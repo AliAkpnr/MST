@@ -1,0 +1,42 @@
+﻿@model WebSite.Models.LoginModel
+
+
+@using (Html.BeginForm("Login", "Auth",FormMethod.Post))
+{
+    <div style="width: 50%">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">GİRİŞ YAP</h1>
+    
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                @Html.TextBoxFor(u => u.email, new { @class = "form-control" })
+                @if (ViewBag.Message != null && ViewBag.Message=="Email")
+                {
+                    <div id="emailHelp" class="form-text">Email hatalı</div>
+                }
+            </div>
+            <div class="mb-3">
+
+                <label for="exampleInputEmail1" class="form-label">Parola</label>
+                @Html.PasswordFor(u => u.password, new { @class = "form-control" })
+                @if (ViewBag.Message != null && ViewBag.Message == "Parola")
+                {
+                    <div id="emailHelp" class="form-text">Parola hatalı</div>
+                }
+            </div>
+            @if (ViewBag.Message != null && ViewBag.Message == "Giriş")
+            {
+                <div id="emailHelp" class="form-text">Giriş hatası bilgilerinizi kontrol ederek tekrar deneyin</div>
+            }
+
+            <button type="submit" class="btn btn-primary">GİRİŞ</button>
+        </form>
+    </div>
+
+}
+
+
+
+
+

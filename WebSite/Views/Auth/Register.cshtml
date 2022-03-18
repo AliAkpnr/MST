@@ -1,0 +1,57 @@
+﻿@model RegisterModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Kayıt Ol</h2>
+
+@using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+{
+    <div style="width: 50%">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">KAYIT OL</h1>
+
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Ad Soyad</label>
+                @Html.TextBoxFor(u => u.fullname, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                @Html.TextBoxFor(u => u.email, new { @class = "form-control" })
+                @if (ViewBag.Message != null && ViewBag.Message == "Email")
+                {
+                    <div id="emailHelp" class="form-text">Email hatalı</div>
+                }
+            </div>
+            <div class="mb-3">
+
+                <label for="exampleInputEmail1" class="form-label">Parola</label>
+                @Html.PasswordFor(u => u.password, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+
+                <label for="exampleInputEmail1" class="form-label">Parola Tekrar</label>
+                @Html.PasswordFor(u => u.passwordAgain, new { @class = "form-control" })
+            </div>
+            @if (ViewBag.Message != null && ViewBag.Message == "PasswordAgain")
+            {
+                <div id="emailHelp" class="form-text">Parolalar uyuşmuyor</div>
+            }
+            @if (ViewBag.Message != null && ViewBag.Message == "Register")
+            {
+                <div id="emailHelp" class="form-text">Kayıt başarısız oldu</div>
+            }
+            <button type="submit" class="btn btn-primary">KAYDET</button>
+        </form>
+    </div>
+
+}
+
+
+
+
+
+

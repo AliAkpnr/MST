@@ -1,0 +1,37 @@
+﻿@model Entities.Concrete.Product
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Ekle</h2>
+
+@using (Html.BeginForm("Add", "Products", FormMethod.Post))
+{
+<form>
+    <div hidden="true"> @Html.TextBoxFor(p => p.Id)</div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Ürün Adı</label>
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        
+        <label for="exampleInputEmail1" class="form-label">Ürün Açıklaması</label>
+        @Html.TextAreaFor(p => p.Description, 5,1,new {@class = "form-control"})
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Barcode</label>
+        @Html.TextBoxFor(p => p.Barcode, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Category</label>
+        @Html.DropDownListFor(p=> p.CategoryId, (List<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
+       
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+}

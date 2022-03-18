@@ -1,0 +1,42 @@
+﻿@model List<Entities.Concrete.Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<a href="@Url.Action("Add","Products")" class="btn btn-success">EKLE</a>
+<table class="table">
+    <thead>
+        <tr class="row justify-content-between">
+            <th class="col-1" scope="col">Id</th>
+            <th class="col-2" scope="col">Kategorisi</th>
+            <th class="col-3" scope="col">Ürün Adı</th>
+            <th class="col-4" scope="col">Ürün Açıklaması</th>
+            <th class="col-2" scope="col">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i < @Model.Count; i++)
+    {
+        <tr class="row justify-content-between">
+            <td class="col-1"> @Model[i].Id</td>
+            @foreach (var category in ViewBag.categories)
+            {
+                if (category.Id == Model[i].CategoryId)
+                {
+                    <td class="col-2"> @category.Name </td>
+                }
+            }
+            <td class="col-3"> @Model[i].Name</td>
+            <td class="col-4"> @Model[i].Description</td>
+            
+            <td class="col-2">
+                <a class="btn btn-secondary" href="@Url.Action("Add","Products",new{productId = Model[i].Id})">Düzenle</a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Products", new {productId = Model[i].Id})">Sil</a>
+            </td>
+        </tr>
+    }
+    
+    </tbody>
+</table>
